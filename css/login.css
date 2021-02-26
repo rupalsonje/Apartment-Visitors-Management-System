@@ -26,22 +26,21 @@ color: rgb(38, 50, 56);
 font-weight: 700;
 font-size: 14px;
 letter-spacing: 1px;
-background: rgba(136, 126, 126, 0.04);
+background: rgba(136, 126, 126, 0.06);
 padding: 10px 20px;
 border: none;
 border-radius: 20px;
 outline: none;
 box-sizing: border-box;
-border: 2px solid rgba(0, 0, 0, 0.02);
-margin-bottom: 50px;
+border: 2px solid rgba(0, 0, 0, 0.04);
 margin-left: 46px;
 text-align: center;
-margin-bottom: 27px;
+margin-bottom: 7px;
 font-family: 'Ubuntu', sans-serif;
 }
 
 form.form1 {
-    padding-top: 40px;
+    padding-top: 30px;
 }
 
 .pass {
@@ -50,21 +49,31 @@ color: rgb(38, 50, 56);
 font-weight: 700;
 font-size: 14px;
 letter-spacing: 1px;
-background: rgba(136, 126, 126, 0.04);
+background: rgba(136, 126, 126, 0.06);
 padding: 10px 20px;
 border: none;
 border-radius: 20px;
 outline: none;
 box-sizing: border-box;
-border: 2px solid rgba(0, 0, 0, 0.02);
-margin-bottom: 50px;
+border: 2px solid rgba(0, 0, 0, 0.04);
 margin-left: 46px;
+margin-bottom: 4px;
 text-align: center;
-margin-bottom: 27px;
 font-family: 'Ubuntu', sans-serif;
 }
-
-
+.black{
+    color:#000;
+}
+.white{
+    color:#cdd0cb;
+}
+.error{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: capitalize;
+    color:#ff4646;
+}
 .un:focus, .pass:focus {
     border: 2px solid rgba(0, 0, 0, 0.18) !important;
     
@@ -82,6 +91,7 @@ font-family: 'Ubuntu', sans-serif;
     padding-top: 10px;
     font-family: 'Ubuntu', sans-serif;
     margin-left: 35%;
+    margin-top: 6px;
     font-size: 13px;
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
 }

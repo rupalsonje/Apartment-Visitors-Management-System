@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@500&display=swap');
+
+body{
+    margin: 0;
+    padding: 0;
+    background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background: linear-gradient(to right, #25c481, #25b7c4);
+    box-sizing: border-box;  
+    color: #00296b !important;  
+}
+
+.area {
+    width: 95%;
+    height: 100%;
+    float: right;
+    margin: 30px 10px 0;
+}
+.cards{
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content : center;
+    margin: 30px auto !important;
+}
+
+.d_card{
+    /* border: 2px solid black; */
+    border-radius: 15px;
+    padding: 10px 25px;
+    width: 290px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #c2e59c;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #64b3f4, #c2e59c);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #64b3f4, #c2e59c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    height: 200px;
+    margin: 20px auto;
+}
+
+.card-data{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 15px 30px;
+}
+
+.card-data .fa{
+    font-size: 1.2cm;
+    color: #000;
+}
+
+.card-data h4{
+    font-size: 1cm;
+}
+
+.cards .d_card h2{
+    font-size: 0.7cm;
+    font-family: Lora, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    .area{
+        margin-top: 10px;
+    }
+}
