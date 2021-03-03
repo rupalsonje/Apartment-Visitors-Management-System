@@ -4,10 +4,17 @@
     
 $conn = mysqli_connect('localhost','rupal','1234567890','apartment visitor management system');
 
+$name = '';
+$number = '';
+$address ='';
+$apartment_number='';
+$floor_number ='';
+$meet = '';
+$reason = '';
 if(!$conn){
     echo 'econnection error: '. mysqli_connect_error();
 }
-$error = array('number'=>'','name'=>'','apart_number'=>'','floor_number'=>'','meet'=>'','reason'=>'');
+$error = array('number'=>'','name'=>'','apart_number'=>'','floor_number'=>'','meet'=>'','reason'=>'','address'=>'');
 
 if(isset($_POST['submit'])){
     if(empty($_POST['name'])){
@@ -22,8 +29,8 @@ if(isset($_POST['submit'])){
     }
     else{
         $number = htmlspecialchars($_POST['number']);
-        if(strlen($number)>10){
-            $error['number']= "number should be less than 10 digits";
+        if(strlen($number)!=10){
+            $error['number']= "Mobile Number should be of 10 digits";
         }
     }
 
@@ -59,7 +66,7 @@ if(isset($_POST['submit'])){
     }
     
     if(array_filter($error)){
-        echo 'errors in form';
+        // echo 'errors in form';
     }
     else{
 
@@ -75,15 +82,11 @@ if(isset($_POST['submit'])){
         // $date=date('d-m-Y H:i');
         
         $sql = "INSERT INTO `visitor_data`(`visitors name`,`mobile number`,`address`,`apartment number`,`floor`,`whom to meet`,`reason to meet`,`entry time`) VALUES ('$name','$number','$address','$apartment_number','$floor_number','$meet','$reason',now());";
-        // echo 'hey';       
         if(mysqli_query($conn,$sql)){
-            echo "success";
             header('Location:managevisitor.php');
         }
         else{
-            // $error['name'] = "query error";
-            echo 'error';
-            print_r($error); 
+
         }
     }
 }
@@ -164,31 +167,38 @@ if(isset($_POST['submit'])){
                 <form id="survey-form" method="POST">
                     <div class="form-group">
                         <label id="name-label" for="name">Visitor's Name</label>
-                        <input type="text" name="name" id="name" class="form-control" autocomplete="name" placeholder="Enter your name" required>
+                        <input type="text" name="name" id="name" class="form-control" autocomplete="name" placeholder="Enter your name" value="<?php echo $name ?>">
+                        <p class="error"><?php echo $error['name']; ?></p>
                     </div>
                     <div class="form-group">
-                       <label id="number-label" for="number">Mobile Number</label>
-                        <input type="number" name="number" id="number" maxlength="10" class="form-control" placeholder="Mobile Number">
+                        <label id="number-label" for="number">Mobile Number</label>
+                        <input type="number" name="number" id="number" maxlength="10" class="form-control" placeholder="Mobile Number" value="<?php echo $number ?>">
+                        <p class="error"><?php echo $error['number']; ?></p>
                     </div>
                     <div class="form-group">
-                       <label id="address-label" for="number">Address</label>
-                        <textarea type="text" rows="4" cols="100" name="address" id="address" class="form-control" autocomplete="address" placeholder="Address"></textarea>
+                        <label id="address-label" for="number">Address</label>
+                        <textarea type="text" rows="4" cols="100" name="address" id="address" class="form-control" autocomplete="address" placeholder="Address"><?php echo $address ?></textarea>
+                        <p class="error"><?php echo $error['address']; ?></p>
                     </div>
                     <div class="form-group">
-                       <label id="apart_number-label" for="number">Apartment Number</label>
-                        <input type="number" name="apart_number" id="apart_number" class="form-control" placeholder="Apartment Number">
+                        <label id="apart_number-label" for="number">Apartment Number</label>
+                        <input type="number" name="apart_number" id="apart_number" class="form-control" placeholder="Apartment Number" value="<?php echo $apartment_number ?>">
+                        <p class="error"><?php echo $error['apart_number']; ?></p>
                     </div>
                     <div class="form-group">
-                       <label id="floor_number-label" for="number">Floor/Wing</label>
-                        <input type="number" name="floor_number" id="floor_number" class="form-control" placeholder="Floor/Wing">
+                        <label id="floor_number-label" for="number">Floor/Wing</label>
+                        <input type="number" name="floor_number" id="floor_number" class="form-control" placeholder="Floor/Wing" value="<?php echo $floor_number ?>">
+                        <p class="error"><?php echo $error['floor_number']; ?></p>
                     </div>
                     <div class="form-group">
                         <label id="meet-label" for="name">Whom to meet</label>
-                        <input type="text" name="meet" id="meet" class="form-control" placeholder="Whom to meet" required>
+                        <input type="text" name="meet" id="meet" class="form-control" placeholder="Whom to meet" value="<?php echo $meet ?>">
+                        <p class="error"><?php echo $error['meet']; ?></p>
                     </div>
                     <div class="form-group">
                         <label id="reason-label" for="name">Reason to meet</label>
-                        <input type="text" name="reason" id="reason" class="form-control" placeholder="Reason to meet" required>
+                        <input type="text" name="reason" id="reason" class="form-control" placeholder="Reason to meet" value="<?php echo $reason ?>">
+                        <p class="error"><?php echo $error['reason']; ?></p>
                     </div>
 
                     <div class="form-group">
