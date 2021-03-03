@@ -1,7 +1,6 @@
 <?php 
     session_start();
     // echo $_SESSION['username']; 
-
     
 $conn = mysqli_connect('localhost','rupal','1234567890','apartment visitor management system');
 
@@ -72,11 +71,14 @@ if(isset($_POST['submit'])){
         $meet = mysqli_real_escape_string($conn,$_POST['meet']);
         $reason = mysqli_real_escape_string($conn,$_POST['reason']);
 
-        $sql = "INSERT INTO `donation`(`fullname`,`addres`,`city`,`state_s`,`postal code`,`country`,`d_type`,`comment`) VALUES ('$name','$address','$city','$state','$pc','$country','$type','$comment');";
-         echo 'hey';       
+        // date_default_timezone_set('Asia/Kolkata');
+        // $date=date('d-m-Y H:i');
+        
+        $sql = "INSERT INTO `visitor_data`(`visitors name`,`mobile number`,`address`,`apartment number`,`floor`,`whom to meet`,`reason to meet`,`entry time`) VALUES ('$name','$number','$address','$apartment_number','$floor_number','$meet','$reason',now());";
+        // echo 'hey';       
         if(mysqli_query($conn,$sql)){
             echo "success";
-            header('Location:index.php');
+            header('Location:managevisitor.php');
         }
         else{
             // $error['name'] = "query error";
@@ -159,7 +161,7 @@ if(isset($_POST['submit'])){
                 <header class="header">
                     <h1 id="title" class="text-center">Add a New Visitor</h1>
                 </header>
-                <form id="survey-form" method="POST" action="managevisitor.php">
+                <form id="survey-form" method="POST">
                     <div class="form-group">
                         <label id="name-label" for="name">Visitor's Name</label>
                         <input type="text" name="name" id="name" class="form-control" autocomplete="name" placeholder="Enter your name" required>
