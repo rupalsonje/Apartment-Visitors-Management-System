@@ -1,3 +1,22 @@
+<?php 
+    session_start();
+    $count=1;
+
+    $conn = mysqli_connect('localhost','rupal','1234567890','apartment visitor management system');
+    if(!$conn){
+        echo 'econnection error: '. mysqli_connect_error();
+    }
+
+    $sql="SELECT `id`,`visitors name`,`mobile number`,`whom to meet`,`outing remark` FROM `visitor_data` ORDER BY `entry time`;";
+    
+    $result = mysqli_query($conn,$sql);
+
+    $visitors = mysqli_fetch_all($result,MYSQLI_ASSOC);
+
+    mysqli_free_result($result);
+
+    mysqli_close($conn);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,15 +107,18 @@
             </div>
             <div class="tbl-content">
                 <table cellpadding="0" cellspacing="0">
+                <?php foreach($visitors as $visitor){ 
+                    if ($visitor['outing remark']==NULL){?>
                 <tbody>
                     <tr>
-                    <td>1</td>
-                    <td>RUPAL SONJE</td>
-                    <td>0123456789</td>
-                    <td>NIKHIL</td>
-                    <td><a href="managevisitorform.html"><i class="fa fa-edit fa-2x"></i></a></td>
+                    <td><?php echo $count?></td>
+                    <td><?php echo htmlspecialchars($visitor['visitors name']); ?></td>
+                    <td><?php echo htmlspecialchars($visitor['mobile number']); ?></td>
+                    <td><?php echo htmlspecialchars($visitor['whom to meet']); ?></td>
+                    <td><a href="managevisitorform.php?id=<?php echo $visitor['id']; ?>"><i class="fa fa-edit fa-2x"></i></a></td>
                     </tr>
                 </tbody>
+                <?php }$count++; }?>
                 </table>
             </div>
         </section>          

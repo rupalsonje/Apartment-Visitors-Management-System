@@ -1,6 +1,5 @@
 <?php 
     session_start();
-    // echo $_SESSION['username']; 
     
 $conn = mysqli_connect('localhost','rupal','1234567890','apartment visitor management system');
 
@@ -85,9 +84,9 @@ if(isset($_POST['submit'])){
         if(mysqli_query($conn,$sql)){
             header('Location:managevisitor.php');
         }
-        else{
+        // else{
 
-        }
+        // }
     }
 }
 
