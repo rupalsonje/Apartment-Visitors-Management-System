@@ -1,6 +1,29 @@
 <?php 
     session_start();
-    // echo $_SESSION['username']; 
+
+    $conn = mysqli_connect('localhost','rupal','1234567890','apartment visitor management system');
+    if(!$conn){
+        echo 'econnection error: '. mysqli_connect_error();
+    }
+    $sql = "SELECT `visitors name`,`entry time` FROM visitor_data WHERE DATE(`entry time`) = CURDATE();";
+    $result = mysqli_query($conn,$sql);
+    $visitor_today = mysqli_fetch_all($result,MYSQLI_ASSOC);
+    mysqli_free_result($result);
+
+    $sql="SELECT `visitors name`,`entry time` FROM visitor_data WHERE `entry time` BETWEEN DATE_SUB(CURDATE(),INTERVAL 1 DAY ) AND CURDATE();";    
+    $result = mysqli_query($conn,$sql);
+    $visitor_yes = mysqli_fetch_all($result,MYSQLI_ASSOC);
+    mysqli_free_result($result);
+   
+    $sql="SELECT `visitors name`,`entry time` FROM visitor_data WHERE `entry time`>now() - interval 1 month;";
+    $result = mysqli_query($conn,$sql);
+    $visitor_month = mysqli_fetch_all($result,MYSQLI_ASSOC);
+    mysqli_free_result($result);
+
+    $sql="SELECT `visitors name`,`entry time` FROM visitor_data WHERE `entry time`>now() - interval 6 month;";
+    $result = mysqli_query($conn,$sql);
+    $visitor_6month = mysqli_fetch_all($result,MYSQLI_ASSOC);
+    mysqli_free_result($result);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,30 +98,30 @@
                     <div class="d_card">
                         <div class="card-data">
                             <i class="fa fa-user"></i>             
-                            <h4>2</h4>
+                            <h4><?php echo htmlspecialchars(count($visitor_today)) ;?></h4>
                         </div>
-                        <h2>Today's Visitors</h2>
+                        <h2>Todays Visitors</h2>
                     </div>
                     <div class="d_card">
                         <div class="card-data">
                             <i class="fa fa-user"></i>             
-                            <h4>2</h4>
+                            <h4><?php echo htmlspecialchars(count($visitor_yes)) ;?></h4>
                         </div>
-                        <h2>Today's Visitors</h2>
+                        <h2>Yesterdays Visitors</h2>
                     </div>
                     <div class="d_card">
                         <div class="card-data">
                             <i class="fa fa-user"></i>             
-                            <h4>2</h4>
+                            <h4><?php echo htmlspecialchars(count($visitor_month)) ;?></h4>
                         </div>
-                        <h2>Today's Visitors</h2>
+                        <h2>Last Month Visitors</h2>
                     </div>
                     <div class="d_card">
                         <div class="card-data">
                             <i class="fa fa-user"></i>             
-                            <h4>2</h4>
+                            <h4><?php echo htmlspecialchars(count($visitor_6month)) ;?></h4>
                         </div>
-                        <h2>Today's Visitors</h2>
+                        <h2>Past 6 Months Visitors</h2>
                     </div>
                 </div>
             </div>

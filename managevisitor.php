@@ -118,7 +118,7 @@
                     <td><a href="managevisitorform.php?id=<?php echo $visitor['id']; ?>"><i class="fa fa-edit fa-2x"></i></a></td>
                     </tr>
                 </tbody>
-                <?php }$count++; }?>
+                <?php $count++; }}?>
                 </table>
             </div>
         </section>          

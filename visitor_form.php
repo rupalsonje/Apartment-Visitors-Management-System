@@ -11,7 +11,7 @@ $floor_number ='';
 $meet = '';
 $reason = '';
 if(!$conn){
-    echo 'econnection error: '. mysqli_connect_error();
+    echo 'connection error: '. mysqli_connect_error();
 }
 $error = array('number'=>'','name'=>'','apart_number'=>'','floor_number'=>'','meet'=>'','reason'=>'','address'=>'');
 
@@ -65,7 +65,6 @@ if(isset($_POST['submit'])){
     }
     
     if(array_filter($error)){
-        // echo 'errors in form';
     }
     else{
 
@@ -84,9 +83,6 @@ if(isset($_POST['submit'])){
         if(mysqli_query($conn,$sql)){
             header('Location:managevisitor.php');
         }
-        // else{
-
-        // }
     }
 }
 

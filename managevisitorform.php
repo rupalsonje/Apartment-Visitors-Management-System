@@ -2,11 +2,14 @@
     session_start();
 
     $conn = mysqli_connect('localhost','rupal','1234567890','apartment visitor management system');
+    $remark='';
+
     if(!$conn){
         echo 'econnection error: '. mysqli_connect_error();
     }
     if(isset($_GET['id'])){
         $id = mysqli_real_escape_string($conn,$_GET['id']);
+        // $_SESSION['id']=$id;
         $sql="SELECT * FROM visitor_data WHERE id = $id;";
         
         $result = mysqli_query($conn,$sql);
@@ -15,7 +18,27 @@
 
         mysqli_free_result($result);
 
-        mysqli_close($conn);
+    }
+    $error = array('remark'=>'');
+
+    if(isset($_POST['submit'])){
+        if(empty($_POST['remark'])){
+            $error['remark']= "Outing Remark is required";
+        }
+        else{
+            $remark = htmlspecialchars($_POST['remark']);
+        }
+
+        if(array_filter($error)){
+        }
+        else{
+            $remark = mysqli_real_escape_string($conn,$_POST['remark']);
+            $sql = "UPDATE `visitor_data` SET `outing remark`='".$remark."',`out time`=now() WHERE id='".$id."'";
+            
+            if(mysqli_query($conn,$sql)){
+                header('Location:managevisitor.php');
+            }
+        }    
     }
 ?>
 <!DOCTYPE html>
@@ -90,7 +113,7 @@
                 <header class="header">
                     <h1 id="title" class="text-center">Add a New Visitor</h1>
                 </header>
-                <form id="survey-form" method="POST">
+                <form id="survey-form" method="POST" action="">
                     <div class="form-group">
                         <label id="name-label" for="name">Visitor's Name</label>
                         <input type="text" name="name" id="name" class="form-control" autocomplete="name" placeholder="Enter your name" value="<?php echo htmlspecialchars($visitor[0]['visitors name']); ?>" readonly>
@@ -121,15 +144,16 @@
                     </div>
                     <div class="form-group">
                         <label id="time-label" for="number">Entry Time</label>
-                         <input type="text" name="entry_time" id="entry_time" class="form-control" value="<?php echo htmlspecialchars($visitor[0]['entry time']); ?>" readonly>
+                         <input type="text" name="entry_time" id="entry_time" class="form-control" value="<?php echo date(htmlspecialchars($visitor[0]['entry time'])); ?>" readonly>
                     </div>
                     <div class="form-group">
                         <label id="remark-label" for="remark">Outing remark</label>
                          <textarea type="text" rows="4" cols="100" name="remark" id="remark" class="form-control" placeholder="Outing Remark"></textarea>
+                         <p class="error"><?php echo $error['remark']; ?></p>
                     </div>
  
                     <div class="form-group">
-                    <button type="submit" id="submit" class="submit-button">
+                    <button type="submit" id="submit" name="submit" class="submit-button">
                         Submit
                     </button>
                     </div>
