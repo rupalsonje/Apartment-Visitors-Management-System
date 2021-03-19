@@ -1,7 +1,6 @@
 <?php 
-    session_start();
-    
-$conn = mysqli_connect('localhost','rupal','1234567890','apartment visitor management system');
+    session_start();    
+    include('db_connect.php');
 
 $name = '';
 $number = '';
@@ -10,9 +9,7 @@ $apartment_number='';
 $floor_number ='';
 $meet = '';
 $reason = '';
-if(!$conn){
-    echo 'connection error: '. mysqli_connect_error();
-}
+
 $error = array('number'=>'','name'=>'','apart_number'=>'','floor_number'=>'','meet'=>'','reason'=>'','address'=>'');
 
 if(isset($_POST['submit'])){
@@ -82,6 +79,7 @@ if(isset($_POST['submit'])){
         $sql = "INSERT INTO `visitor_data`(`visitors name`,`mobile number`,`address`,`apartment number`,`floor`,`whom to meet`,`reason to meet`,`entry time`) VALUES ('$name','$number','$address','$apartment_number','$floor_number','$meet','$reason',now());";
         if(mysqli_query($conn,$sql)){
             header('Location:managevisitor.php');
+            mysqli_close($conn);
         }
     }
 }
@@ -99,60 +97,7 @@ if(isset($_POST['submit'])){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 </head>
 <body>
-    <nav class="main-menu">
-        <ul>
-            <li>
-                <a href="admin.php">
-                    <i class="fa fa-laptop fa-2x"></i>
-                    <span class="nav-text">
-                    Dashboard
-                    </span>
-                </a>                
-            </li>
-            <li class="has-subnav">
-                <a href="#">
-                    <i class="fa fa-user fa-2x"></i>
-                    <span class="nav-text">
-                        New Visitor
-                    </span>
-                </a>
-            </li>
-            <li class="has-subnav">
-                <a href="#">
-                    <i class="fa fa-users fa-2x"></i>
-                    <span class="nav-text">
-                        Manage Visitors
-                    </span>
-                </a>                
-            </li>
-            <li class="has-subnav">
-                <a href="#">
-                    <i class="fa fa-check fa-2x"></i>
-                    <span class="nav-text">
-                        Visitors B/W Dates
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-cog fa-2x"></i>
-                    <span class="nav-text">
-                        Profile
-                    </span>
-                </a>
-            </li>
-            <li>
-        <ul class="logout">
-            <li>
-                <a href="#">
-                        <i class="fa fa-power-off fa-2x"></i>
-                    <span class="nav-text">
-                        Logout
-                    </span>
-                </a>
-            </li>  
-        </ul>
-    </nav>
+    <?php include('navbar.php'); ?>
     <div class="area">
         <div class="container">
             <div class="row">

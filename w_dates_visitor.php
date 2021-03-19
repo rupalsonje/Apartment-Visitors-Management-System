@@ -1,11 +1,8 @@
 <?php 
     session_start();
-    $count=1;
+    include('db_connect.php');
 
-    $conn = mysqli_connect('localhost','rupal','1234567890','apartment visitor management system');
-    if(!$conn){
-        echo 'econnection error: '. mysqli_connect_error();
-    }
+    $count=1;
 
     $sql="SELECT `id`,`visitors name`,`mobile number`,`whom to meet`,`outing remark` FROM `visitor_data` ORDER BY `entry time`;";
     
@@ -30,60 +27,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 </head>
 <body>
-    <nav class="main-menu">
-        <ul>
-            <li>
-                <a href="#">
-                    <i class="fa fa-laptop fa-2x"></i>
-                    <span class="nav-text">
-                    Dashboard
-                    </span>
-                </a>                
-            </li>
-            <li class="has-subnav">
-                <a href="visitor_form.php">
-                    <i class="fa fa-user fa-2x"></i>
-                    <span class="nav-text">
-                        New Visitor
-                    </span>
-                </a>
-            </li>
-            <li class="has-subnav">
-                <a href="#">
-                    <i class="fa fa-users fa-2x"></i>
-                    <span class="nav-text">
-                        Manage Visitors
-                    </span>
-                </a>                
-            </li>
-            <li class="has-subnav">
-                <a href="#">
-                    <i class="fa fa-check fa-2x"></i>
-                    <span class="nav-text">
-                        Visitors B/W Dates
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-cog fa-2x"></i>
-                    <span class="nav-text">
-                        Profile
-                    </span>
-                </a>
-            </li>
-            <li>
-        <ul class="logout">
-            <li>
-                <a href="#">
-                        <i class="fa fa-power-off fa-2x"></i>
-                    <span class="nav-text">
-                        Logout
-                    </span>
-                </a>
-            </li>  
-        </ul>
-    </nav>
+    <?php include('navbar.php'); ?>
     <div class="area"> 
         <section>
             <form action="" class="search-bar">

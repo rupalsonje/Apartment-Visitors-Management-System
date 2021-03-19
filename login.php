@@ -1,10 +1,7 @@
 <?php
     session_start();
+    include('db_connect.php');
 
-    $conn = mysqli_connect('localhost','rupal','1234567890','apartment visitor management system');
-    if(!$conn){
-        echo 'econnection error: '. mysqli_connect_error();
-    }
     $username = '';
     $error = array('username'=>'','pass'=>'');
     if(isset($_POST['submit'])){
