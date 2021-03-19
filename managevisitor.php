@@ -51,6 +51,9 @@
             </div>
             <div class="tbl-content">
                 <table cellpadding="0" cellspacing="0">
+                <?php if (count($visitors)==0){ ?>
+                        <p class="data"><?php echo"no data found"; ?></p>
+                    <?php }else{?>
                 <?php foreach($visitors as $visitor){ 
                     if ($visitor['outing remark']==NULL){?>
                 <tbody>
@@ -62,7 +65,7 @@
                     <td><a href="managevisitorform.php?id=<?php echo $visitor['id']; ?>"><i class="fa fa-edit fa-2x"></i></a></td>
                     </tr>
                 </tbody>
-                <?php $count++; }}?>
+                <?php $count++; }}}?>
                 </table>
             </div>
         </section>          

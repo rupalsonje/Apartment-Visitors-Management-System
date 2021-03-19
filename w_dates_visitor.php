@@ -4,13 +4,7 @@
 
     $count=1;
 
-    $sql="SELECT `id`,`visitors name`,`mobile number`,`whom to meet`,`outing remark` FROM `visitor_data` ORDER BY `entry time`;";
-    
-    $result = mysqli_query($conn,$sql);
-
-    $visitors = mysqli_fetch_all($result,MYSQLI_ASSOC);
-
-    mysqli_free_result($result);
+    $visitors=$_SESSION['data'];
 
     mysqli_close($conn);
 ?>
@@ -52,18 +46,21 @@
             </div>
             <div class="tbl-content">
                 <table cellpadding="0" cellspacing="0">
-                <?php foreach($visitors as $visitor){ 
-                    if ($visitor['outing remark']!=NULL){?>
-                <tbody>
-                    <tr>
-                    <td><?php echo $count?></td>
-                    <td><?php echo htmlspecialchars($visitor['visitors name']); ?></td>
-                    <td><?php echo htmlspecialchars($visitor['mobile number']); ?></td>
-                    <td><?php echo htmlspecialchars($visitor['whom to meet']); ?></td>
-                    <td><a href="visitor_view.php?id=<?php echo $visitor['id']; ?>"><i class="fa fa-angle-double-right fa-2x"></i></a></td>
-                    </tr>
-                </tbody>
-                <?php $count++; }}?>
+                    <?php if (count($visitors)==0){ ?>
+                        <p class="data"><?php echo"no data found"; ?></p>
+                    <?php }else{?>
+                    <?php foreach($visitors as $visitor){ 
+                        if ($visitor['outing remark']!=NULL){?>
+                    <tbody>
+                        <tr>
+                        <td><?php echo $count?></td>
+                        <td><?php echo htmlspecialchars($visitor['visitors name']); ?></td>
+                        <td><?php echo htmlspecialchars($visitor['mobile number']); ?></td>
+                        <td><?php echo htmlspecialchars($visitor['whom to meet']); ?></td>
+                        <td><a href="visitor_view.php?id=<?php echo $visitor['id']; ?>"><i class="fa fa-angle-double-right fa-2x"></i></a></td>
+                        </tr>
+                    </tbody>
+                    <?php $count++; }}}?>
                 </table>
             </div>
         </section>          

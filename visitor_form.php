@@ -73,9 +73,6 @@ if(isset($_POST['submit'])){
         $meet = mysqli_real_escape_string($conn,$_POST['meet']);
         $reason = mysqli_real_escape_string($conn,$_POST['reason']);
 
-        // date_default_timezone_set('Asia/Kolkata');
-        // $date=date('d-m-Y H:i');
-        
         $sql = "INSERT INTO `visitor_data`(`visitors name`,`mobile number`,`address`,`apartment number`,`floor`,`whom to meet`,`reason to meet`,`entry time`) VALUES ('$name','$number','$address','$apartment_number','$floor_number','$meet','$reason',now());";
         if(mysqli_query($conn,$sql)){
             header('Location:managevisitor.php');

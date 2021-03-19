@@ -19,7 +19,6 @@
         }
         
         if(array_filter($error)){
-            // echo 'errors in form';
         }
         else{
             $username = mysqli_real_escape_string($conn,$_POST['username']);
@@ -30,7 +29,6 @@
             $result = mysqli_query($conn,$sql);
 
             if(mysqli_num_rows($result) == 1){
-                // fetch result in array format
                 $data=mysqli_fetch_assoc($result);
                 $_SESSION['username']=$data['username'];
                 $_SESSION['success'] = "You are now logged in";
@@ -39,9 +37,7 @@
             else{
                 $error['pass'] = "Incorrect username or password";
             }
-            // free result from connection
             mysqli_free_result($result);
-            //close connection
             mysqli_close($conn);
         }
     }

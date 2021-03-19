@@ -25,7 +25,7 @@
                 </a>                
             </li>
             <li class="has-subnav">
-                <a href="w_dates_visitor.php">
+                <a href="view_visitor.php">
                     <i class="fa fa-check fa-2x"></i>
                     <span class="nav-text">
                         Visitors B/W Dates
@@ -43,8 +43,9 @@
             <li>
         <ul class="logout">
             <li>
-                <a href="#">
-                        <i class="fa fa-power-off fa-2x"></i>
+                <a href="<?php session_unset();
+                session_destroy(); ?>login.php">
+                    <i class="fa fa-power-off fa-2x"></i>
                     <span class="nav-text">
                         Logout
                     </span>

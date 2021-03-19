@@ -5,7 +5,6 @@
     $remark='';
     if(isset($_GET['id'])){
         $id = mysqli_real_escape_string($conn,$_GET['id']);
-        // $_SESSION['id']=$id;
         $sql="SELECT * FROM visitor_data WHERE id = $id;";
         
         $result = mysqli_query($conn,$sql);
@@ -33,6 +32,10 @@
             
             if(mysqli_query($conn,$sql)){
                 header('Location:managevisitor.php');
+                mysqli_close($conn);
+            }
+            else{
+                $error['remark']="Error! Unable to get data";
             }
         }    
     }
