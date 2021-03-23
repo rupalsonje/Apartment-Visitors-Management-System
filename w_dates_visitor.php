@@ -24,12 +24,6 @@
     <?php include('navbar.php'); ?>
     <div class="area"> 
         <section>
-            <form action="" class="search-bar">
-                <input type="search" name="search" required>
-                <button class="search-btn" type="submit">
-                    <span>Search</span>
-                </button>
-            </form>
             <h1>Visitors Between Date</h1>
             <div class="tbl-header">
                 <table cellpadding="0" cellspacing="0">
@@ -72,5 +66,6 @@
             $('.tbl-header').css({'padding-right':scrollWidth});
           }).resize();
     </script>
+ 
 </body>
 </html>
