@@ -33,12 +33,12 @@
                 $_SESSION['username']=$data['username'];
                 $_SESSION['success'] = "You are now logged in";
                 header('location: admin.php');
+                mysqli_free_result($result);
+                mysqli_close($conn);
             }
             else{
                 $error['pass'] = "Incorrect username or password";
             }
-            mysqli_free_result($result);
-            mysqli_close($conn);
         }
     }
 ?>

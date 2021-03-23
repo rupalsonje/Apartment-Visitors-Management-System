@@ -43,8 +43,7 @@
             <li>
         <ul class="logout">
             <li>
-                <a href="<?php session_unset();
-                session_destroy(); ?>login.php">
+                <a href="logout.php">
                     <i class="fa fa-power-off fa-2x"></i>
                     <span class="nav-text">
                         Logout

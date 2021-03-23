@@ -1,12 +1,9 @@
 <?php 
     session_start();
-    include('db_connect.php');
 
     $count=1;
 
     $visitors=$_SESSION['data'];
-
-    mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -43,8 +40,7 @@
                     <?php if (count($visitors)==0){ ?>
                         <p class="data"><?php echo"no data found"; ?></p>
                     <?php }else{?>
-                    <?php foreach($visitors as $visitor){ 
-                        if ($visitor['outing remark']!=NULL){?>
+                    <?php foreach($visitors as $visitor){ ?>
                     <tbody>
                         <tr>
                         <td><?php echo $count?></td>
@@ -54,7 +50,7 @@
                         <td><a href="visitor_view.php?id=<?php echo $visitor['id']; ?>"><i class="fa fa-angle-double-right fa-2x"></i></a></td>
                         </tr>
                     </tbody>
-                    <?php $count++; }}}?>
+                    <?php $count++; }}?>
                 </table>
             </div>
         </section>          

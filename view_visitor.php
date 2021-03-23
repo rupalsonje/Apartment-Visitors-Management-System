@@ -19,7 +19,6 @@
         }
 
         if(array_filter($error)){
-            echo print_r($error);
         }
         else{
             $from_date = mysqli_real_escape_string($conn,$_POST['from_date']);
@@ -34,8 +33,8 @@
 
             if(mysqli_query($conn,$sql)){
                 $_SESSION['data']=$visitors;
-                header('Location:w_dates_visitor.php');
                 mysqli_close($conn);
+                header('Location:w_dates_visitor.php');
                 }
         }    
     }
